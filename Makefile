@@ -5,6 +5,7 @@
 BASENAME = rudder-doc
 SOURCES = $(BASENAME).txt
 TARGETS = epub html pdf readme
+DOCBOOK_DIST = /usr/share/sgml/docbook/xsl-ns-stylesheets/webhelp
 
 ASCIIDOC = $(CURDIR)/bin/asciidoc/asciidoc.py
 A2X = $(CURDIR)/bin/asciidoc/a2x.py
@@ -40,6 +41,7 @@ SEE = see
 
 all: $(TARGETS)
 epub: epub/$(BASENAME).epub
+webhelp: docs/index.html
 html: html/$(BASENAME).html
 pdf: html/$(BASENAME).pdf
 readme: html/README.html
@@ -57,8 +59,20 @@ html/$(BASENAME).pdf: $(SOURCES)
 	rm -f *.svg
 	mv $(BASENAME).pdf html/
 
+docs/index.html: $(SOURCES)
+	mkdir -p docs 
+	$(ASCIIDOC) --doctype=book --backend docbook $?
+	cp -R style/html/* images docs/
+	cp -R $(DOCBOOK_DIST)/template/common docs/
+	xsltproc  --xinclude --output xincluded-profiled.xml  \
+        	$(DOCBOOK_DIST)/../profiling/profile.xsl $(BASENAME).xml
+
+	xsltproc $(DOCBOOK_DIST)/xsl/webhelp.xsl xincluded-profiled.xml
+
+	rm xincluded-profiled.xml
+
 html/$(BASENAME).html: $(SOURCES)
-	mkdir -p html 
+	mkdir -p html
 	$(ASCIIDOCTOHTML) --out-file $@ $?
 	cp -R style/html/* images html/
 
@@ -72,7 +86,7 @@ slides.html: $(SOURCES)
 ## WARNING: at cleanup, delete png files that were produced by output only !
 
 clean:
-	rm -rf rudder-doc.xml *.pdf *.html *.png *.svg temp html epub
+	rm -rf rudder-doc.xml *.pdf *.html *.png *.svg temp html epub docs
 
 view: all
 	$(SEE) $(TARGETS)
