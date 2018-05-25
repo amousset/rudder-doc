@@ -1,0 +1,21 @@
+Rudder sevrer à vérifier appliquer des configuration, comment les définir
+
+Nous avons un éditeur visuel pour cela :
+
+Technique editor, définition d'une technique simple
+
+Mais pour les besoins communs de gestion système on a une alternative : les buotl-in techniques
+
+Définition d'une directive système
+
+Définition de la directive lié au technique editor en Audit (sans l'expliquer en détail pour l'instant).
+
+Application à  la règle globale.
+
+SSH sur l'agent, résultat.
+
+Passage d'audit en enforce.
+
+Conformité sur la webapp.
+
+Fin de la première "boucle".

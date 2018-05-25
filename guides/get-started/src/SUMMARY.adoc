@@ -2,15 +2,16 @@
 
 . link:introduction/README.adoc[Introduction]
 .. link:introduction/demo.adoc[Test environment]
-. link:configuration-policies/README.adoc[Configuration policies]
-.. link:configuration-policies/technique.adoc[Create a technique]
-.. link:configuration-policies/directive.adoc[Create a directive]
-.. link:configuration-policies/agent.adoc[Apply a first policy]
+. link:configuration-policies/README.adoc[Configure policies]
+.. link:configuration-policies/technique.adoc[Create a new policy]
+.. link:configuration-policies/directive.adoc[Use a predefined policy]
+.. link:configuration-policies/agent.adoc[Apply your first policy]
 .. link:configuration-policies/policy-mode.adoc[Audit vs. Enforce]
-. link:node-management/README.adoc[Node management]
-.. link:node-management/node.adoc[Add a new node]
+. link:node-management/README.adoc[Managed machines]
+.. link:node-management/node.adoc[Add a new machine]
 .. link:node-management/group.adoc[Group nodes]
+.. link:node-management/group.adoc[Provide configuration data]
 . Configuration policy management
-.. Create a rule
-.. Compliance
-.. Traceability
+.. Manage configuration policies
+.. Define a complex applicative policy
+.. Apply it to a specific role
