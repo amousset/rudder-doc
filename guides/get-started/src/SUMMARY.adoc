@@ -1,17 +1,16 @@
 = Summary
 
-. link:introduction/README.adoc[Introduction]
-.. link:introduction/demo.adoc[Test environment]
-. link:configuration-policies/README.adoc[Configure policies]
+. link:environment/README.adoc[Setup a test environment]
+. link:configuration-policies/README.adoc[Define configuration policies]
 .. link:configuration-policies/technique.adoc[Create a new policy]
 .. link:configuration-policies/directive.adoc[Use a predefined policy]
-.. link:configuration-policies/agent.adoc[Apply your first policy]
+.. link:configuration-policies/apply.adoc[Apply your first policies]
 .. link:configuration-policies/policy-mode.adoc[Audit vs. Enforce]
-. link:node-management/README.adoc[Managed machines]
+. link:node-management/README.adoc[Manage machines]
 .. link:node-management/node.adoc[Add a new machine]
-.. link:node-management/group.adoc[Group nodes]
-.. link:node-management/group.adoc[Provide configuration data]
-. Configuration policy management
-.. Manage configuration policies
-.. Define a complex applicative policy
-.. Apply it to a specific role
+.. link:node-management/group.adoc[Classify nodes]
+.. link:node-management/data.adoc[Provide configuration data]
+. link:advanced-configuration/README.adoc[Configuration policy management]
+.. link:advanced-configuration/rules.adoc[Manage configuration policies]
+.. link:advanced-configuration/technique.adoc[Define a complex applicative policy]
+.. link:advanced-configuration/compliance.adoc[Apply it to a specific role]

@@ -1,3 +1,7 @@
-On a appliqué une première configuration, mais au serveur lui-même, ce n'est pas très utile.
+= Manage machines
 
-Nous allons maintenant voir comment gérer des machines différentes.
+We have applied a configuration policy to our Rudder server, but
+it is not what Rudder is about.
+In this part, we will see how to add a new machine to Rudder, and how to classify it,
+allowing to apply the right configuration to the right node.
+
