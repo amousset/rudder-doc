@@ -1,6 +1,6 @@
 ## Rudder User Documentation Makefile
 
-.PHONY: all clean view man links hooks.asciidoc generic-methods.asciidoc
+.PHONY: all clean view man links hooks.asciidoc rudder-plugins.adoc generic-methods.asciidoc
 
 BASENAME = rudder-doc
 SOURCES = $(BASENAME).txt
@@ -52,7 +52,7 @@ readme: html/README.html
 ncf-doc: generic-methods.asciidoc
 links: xsl/links.xsl
 
-content: man ncf-doc hooks.asciidoc $(SOURCES)
+content: man ncf-doc hooks.asciidoc rudder-plugins.adoc $(SOURCES)
 
 epub/$(BASENAME).epub: content
 	mkdir -p html
@@ -95,6 +95,16 @@ hooks.asciidoc: rudder-repo
 	done
 	# Adapt title level to be insertable in the manual
 	sed 's/^=/====/' -i hooks.asciidoc 
+
+rudder-plugins-repo:
+	git clone https://github.com/normation/rudder-plugins.git rudder-plugins-repo
+
+rudder-plugins.adoc: rudder-plugins-repo
+	cd rudder-plugins-repo && git checkout branches/rudder/$(RUDDER_VERSION) 2>/dev/null || git checkout master
+	cd rudder-plugins-repo && make rudder-plugins.adoc plugins-doc-assets
+	cp -r rudder-plugins-repo/plugins-doc-assets/* images/
+	# Adapt title level to be insertable in the manual
+	sed 's/^=/===/' rudder-plugins-repo/rudder-plugins.adoc > rudder-plugins.adoc
 
 ncf-repo:
 	git clone https://github.com/Normation/ncf.git ncf-repo
@@ -190,7 +200,7 @@ test: webhelp/index.html quicktest
 ## WARNING: at cleanup, delete png files that were produced by output only !
 
 clean:
-	rm -rf rudder-doc.xml *.pdf *.html *.png *.svg temp html epub webhelp webhelp-localsearch xincluded-profiled.xml $(BASENAME).xml rudder-agent-repo rudder-repo extensions ncf-repo generic_methods.{asciidoc,md} hooks.asciidoc xsl/links.xsl xsl/index.html
+	rm -rf rudder-doc.xml *.pdf *.html *.png *.svg temp html epub webhelp webhelp-localsearch xincluded-profiled.xml $(BASENAME).xml rudder-agent-repo rudder-repo extensions ncf-repo generic_methods.{asciidoc,md} hooks.asciidoc rudder-plugins.adoc xsl/links.xsl xsl/index.html
 
 view: all
 	$(SEE) $(TARGETS)

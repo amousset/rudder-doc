@@ -8,4 +8,4 @@ updated if needed (for example in case of API change).
 
 Plugins can be open-source or only available in binary format. 
 
-
+include::../rudder-plugins.adoc[]

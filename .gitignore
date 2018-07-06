@@ -12,10 +12,12 @@ xsl/index.html
 generic_methods.asciidoc
 generic_methods.md
 hooks.asciidoc
+rudder-plugins.adoc
 xincluded-profiled.xml
 /rudder-agent-repo/
 /ncf-repo/
 /rudder-repo/
+rudder-plugins-repo/
 
 # Generated images
 main_*.png
