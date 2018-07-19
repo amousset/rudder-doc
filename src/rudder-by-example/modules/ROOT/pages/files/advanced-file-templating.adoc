@@ -69,7 +69,7 @@ http {
         listen {{{vars.node.properties.nginx.port}}};
         listen {{{vars.node.properties.nginx.port}}};
 
-        {{#vars.node.properties.nginx.upstreams}}
+        {{#vars.node.properties.nginx.upstreams}} // <1>
         location {{{location}}} {
             proxy_pass http://{{{name}}};
         }
@@ -86,8 +86,7 @@ http {
 }
 {% endraw %}
 ----
-
-Note that for the second level of iteration, we use a name relative to the first iterator's value.
+<1> Note that for the second level of iteration, we use a name relative to the first iterator's value.
 
 === Result
 
