@@ -33,11 +33,11 @@ changelogs-build:
 	[ -d $@ ] || git clone https://github.com/amousset/rudder-doc.git $@
 	cd $@ && git checkout master && git pull
 	for version in $(ALL_VERSIONS); do \
-	  cd $@ && git checkout master && git branch -df "branches/rudder/$$version" && git checkout -b "branches/rudder/$$version" ; \
-	  sed -i 's@version: "5.0"@version: "$$version"@' src/changelogs/antora.yml ; \
-	  sed -i 's@RUDDER_VERSION = 5.0@RUDDER_VERSION = $$version@' src/changelogs/dependencies/Makefile ; \
-	  src/changelogs && make ; \
-	  cd .. && git add -f src/changelogs && git commit --allow-empty -m "Build" ; \
+	  cd $@ && git checkout master && git branch -df "branches/rudder/$$version" ; git checkout -b "branches/rudder/$$version" ; \
+	  sed -i "s@version: \"5.0\"@version: \"$$version\"@" src/changelogs/antora.yml ; \
+	  sed -i "s@RUDDER_VERSION = 5.0@RUDDER_VERSION = $$version@" src/changelogs/dependencies/Makefile ; \
+	  cd src/changelogs && make ; \
+	  cd ../.. && git add -f src/changelogs && git commit --allow-empty -m "Build" ; cd .. ; \
 	done
 
 # Prepare everything, even if not needed
@@ -77,4 +77,4 @@ optipng:
 clean:
 	cd src/reference && make clean
 	rm -rf build rudder-theme/build
-	rm -rf doc-build
+	rm -rf doc-build changelogs-build
