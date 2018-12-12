@@ -5,6 +5,7 @@
 ## Dynamic content
 
 changelogs:
+	mkdir -p modules/ROOT/pages/
 	cd dependencies && make $@
 	cp -r dependencies/$@/* modules/ROOT/pages/
 	mv modules/ROOT/pages/main.adoc modules/ROOT/pages/index.adoc
