@@ -1,6 +1,6 @@
 ## Builds dynamic dependencies from other repos
 
-RUDDER_VERSION = 6.2
+RUDDER_VERSION = 7.0
 
 .PHONY: clean generic_methods.adoc generic_methods_categories.txt rudder.adoc rudder-relayd.1.adoc hooks.adoc plugins versions.adoc version-compat.adoc
 all: generic_methods.adoc hooks.adoc rudder.adoc rudder-relayd.1.adoc plugins version-compat.adoc
@@ -39,6 +39,10 @@ rudder.adoc: rudder-agent-repo
 	cd rudder-agent-repo/man && make rudder.adoc
 	# Remove first line for easier inclusion
 	tail -n +2 rudder-agent-repo/man/rudder.adoc > rudder.adoc
+
+rudder-lang: rudder-repo
+	cd rudder-repo && git checkout branches/rudder/$(RUDDER_VERSION) 2>/dev/null || git checkout master
+	cd rudder-repo/rudder-lang && git pull && make libs-docs
 
 rudder-relayd.1.adoc: rudder-repo
 	cd rudder-repo && git checkout branches/rudder/$(RUDDER_VERSION) 2>/dev/null || git checkout master
